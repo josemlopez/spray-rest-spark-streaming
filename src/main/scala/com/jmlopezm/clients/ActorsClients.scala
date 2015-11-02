@@ -39,7 +39,7 @@ class ResourcesActor extends Actor {
       sparksRefContainer += sparkId -> SparkReference ("New Spark:" + sparkId, sender ().path.address)
 
     case GetSparkCluster(sparkId) =>
-      sender ! SparkForId(sparksRefContainer.get(sparkId).get)
+      sender ! SparkForId(sparksRefContainer.get(sparkId))
 
     case event : akka.remote.DisassociatedEvent =>
       val pair = sparksRefContainer.find( ref => ref._2.remoteAddress == event.remoteAddress)
@@ -52,7 +52,7 @@ class ResourcesActor extends Actor {
 
 object ResourcesActor {
   case class GetSparkCluster(sparkId: String)
-  case class SparkForId(sparkRef: SparkReference)
+  case class SparkForId(sparkRef: Option[SparkReference])
   case class ReadyToGo(sparkId: String)
 }
 
