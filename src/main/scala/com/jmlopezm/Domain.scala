@@ -8,9 +8,8 @@ import com.jmlopezm.domain.Event
 trait RestMessage
 
 case class SparkAndEvent(response: SparkIDForEvent) extends RestMessage
-
-
 case class SentEventToSpark(event: Event) extends RestMessage
+case class GetCounter() extends RestMessage
 
 // Domain objects
 case class SparkReference(name: String, remoteAddress: Address)
