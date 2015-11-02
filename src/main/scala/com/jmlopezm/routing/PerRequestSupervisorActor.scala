@@ -22,13 +22,14 @@ trait PerRequestSupervisorActor extends Actor with Json4sSupport {
   def target: ActorRef
   def message: RestMessage
 
-  setReceiveTimeout(2.seconds)
+  setReceiveTimeout(2000.seconds)
   target ! message
 
   def receive = {
     case res: RestMessage => complete(OK, res)
     case v: Validation    => complete(BadRequest, v)
     case ReceiveTimeout   => complete(GatewayTimeout, Error("Request timeout"))
+    case e: Error         => complete(NotFound, e.message )
   }
 
   def complete[T <: AnyRef](status: StatusCode, obj: T) = {
@@ -56,9 +57,9 @@ object PerRequestSupervisorActor {
 trait PerRequestCreator {
   this: Actor =>
 
-  def perRequestSupervisorActor(r: RequestContext, target: ActorRef, message: RestMessage) =
+  def perRequestSupervisorActorCreator(r: RequestContext, target: ActorRef, message: RestMessage) =
     context.actorOf(Props(new WithActorRef(r, target, message)))
 
-  def perRequestSuperVisorActor(r: RequestContext, props: Props, message: RestMessage) =
+  def perRequestSupervisorActorCreator(r: RequestContext, props: Props, message: RestMessage) =
     context.actorOf(Props(new WithProps(r, props, message)))
 }
