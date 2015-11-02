@@ -16,6 +16,7 @@ val akkaVersion = "2.3.6"
 libraryDependencies ++= Seq(
     "com.typesafe.akka" %% "akka-actor"        % akkaVersion,
     "com.typesafe.akka" %% "akka-remote"       % akkaVersion,
+    "com.typesafe.akka" %% "akka-slf4j"        % akkaVersion,
     "io.spray"          %% "spray-can"         % sprayVersion,
     "io.spray"          %% "spray-routing"     % sprayVersion,
     "org.json4s"        %% "json4s-native"     % "3.2.4")
