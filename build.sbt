@@ -1,4 +1,4 @@
-organization in ThisBuild := "com.netaporter"
+organization in ThisBuild := "com.jmlopezm"
 
 name := "spray-apr"
 
