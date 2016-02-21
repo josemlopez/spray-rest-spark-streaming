@@ -7,12 +7,14 @@ This example application provides an API that let you send an Event to a (one or
 
 Is out of discussion that is far better to do this with a kafka, but sometimes you want to test a solution before enter in 
 a deeper development.
-A very similar system in production is able to ingest thousands of events per second, then maybe is more than a simple Proof of Concept :)
+
+A very similar to this system, is in production and it's able to ingest thousands of events per second. Maybe is more than a simple Proof of Concept :)
 
 
 #### Other
 This project is based in this other Project: https://github.com/NET-A-PORTER/spray-actor-per-request and try to be an
-example of a REST API for events that will be send to Spark.
+example of a REST API for events that will be sent to Spark.
+
 The second part (the Spark side of this project) will be uploaded in another example (working on it in my free time)
 
 Actor Per Request pattern has many advantages over other patterns based on ASK
